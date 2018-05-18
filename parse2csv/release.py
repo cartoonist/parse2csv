@@ -38,7 +38,7 @@ __email__ = 'ali.ghaffaari@mpi-inf.mpg.de'
 __license__ = 'MIT'
 
 # Release
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 __status__ = DS_PREALPHA
 
 # PyPI-related information
