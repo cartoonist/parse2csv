@@ -67,6 +67,7 @@ __classifiers__ = [
 __requires__ = [
     'click>=6.7',
     'parse>=1.8.2',
+    'PyYAML>=3.12',
 ]
 __tests_require__ = []
 __extras_require__ = {
