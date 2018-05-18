@@ -136,5 +136,5 @@ def generate(output, inputs, configfile, dialect='unix'):
     writer.writeheader()
     for inp in inputs:
         data = parse_all(inp.read(), config['patterns'])
-        proc_data = process(data, config.get('reducts', {}))
+        proc_data = process(data, config.get('reduce', {}))
         writer.writerow(proc_data)
