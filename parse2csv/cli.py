@@ -20,7 +20,6 @@ from . import release
 
 
 @click.command()
-@click.version_option(version=release.__version__)
 @click.argument('inputs', type=click.File('r'), nargs=-1)
 @click.option('-o', '--output', type=click.File('w'), default="-",
               help="Write to this file instead of stdout.")
@@ -29,6 +28,7 @@ from . import release
 @click.option('-d', '--dialect', type=click.Choice(parse2csv.list_dialects()),
               default=parse2csv.default_dialect(), show_default=True,
               help="Use this CSV dialect.")
+@click.version_option(version=release.__version__)
 def cli(**kwargs):
     """Parse the input files for named patterns and dump their values in CSV
     format.
