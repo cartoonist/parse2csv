@@ -32,7 +32,8 @@ DS_STRING = {
 
 # Package release information.
 __title__ = 'parse2csv'
-__description__ = 'Search patterns in multiple files and write values in CSV.'
+__description__ = 'A command-line tool to parse multiple files for named'
+' patterns and write the values in CSV format.'
 __author__ = 'Ali Ghaffaari'
 __email__ = 'ali.ghaffaari@mpi-inf.mpg.de'
 __license__ = 'MIT'

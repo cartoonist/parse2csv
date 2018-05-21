@@ -4,8 +4,8 @@
     parse2csv
     ~~~~~~~~~
 
-    Search the input files for named patterns and dump their values in CSV
-    format.
+    A command-line tool to parse multiple files for named patterns and write the
+    values in CSV format.
 
     :copyright: (c) 2018 by Ali Ghaffaari.
     :license: MIT, see LICENSE for more details.

@@ -1,9 +1,10 @@
 parse2csv
 =========
-parse2csv is a command-line tool to parse multiple files in order to extract
-structured data from each file and then write the values in CSV format. For each
-input file, there would be a row in the generated CSV file containing the field
-values extracted from that file.
+parse2csv is a command-line tool to parse multiple files for named patterns in
+order to extract structured data from each file and then write the values in CSV
+format. For each input file, there would be a row in the generated CSV file
+containing the field values extracted from that file. The CSV header would be
+the names specified for each pattern.
 
 
 The main motivation for writing this script is parsing the output of other tools
