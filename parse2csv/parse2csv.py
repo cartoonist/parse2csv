@@ -12,6 +12,8 @@
 
 from __future__ import division
 from collections import defaultdict
+import os
+import glob
 import csv
 
 import yaml
@@ -64,6 +66,21 @@ class Reduce(object):
     def concat(values):
         """Get concatenation of the values."""
         return ''.join(values)
+
+    @staticmethod
+    def filesize(values):
+        """Get the file size in bytes."""
+        fpath = os.path.realpath(values[0])
+        return os.stat(fpath).st_size
+
+    @staticmethod
+    def filesize_glob(values):
+        """Get cumulative size of the files prefixed by `prefix` in bytes."""
+        prefix = values[0] + "*"
+        retval = 0
+        for fpath in glob.glob(prefix):
+            retval += Reduce.filesize([fpath])
+        return retval
 
 
 def process(data, funcs):
