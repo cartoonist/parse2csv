@@ -15,6 +15,7 @@ from collections import defaultdict
 import os
 import glob
 import csv
+import re
 
 import yaml
 import parse
@@ -107,6 +108,14 @@ class Reduce(object):
         for fpath in glob.glob(prefix):
             retval += Reduce.filesize([fpath])
         return retval
+
+    @staticmethod
+    def parse(values, pattern):
+        """Parse concatenation of the values and get the concatenation of the
+        matched groups by input regex `pattern`.
+        """
+        text = ''.join(values)
+        return ''.join(re.match(pattern, text).groups())
 
 
 def process(data, funcs):
