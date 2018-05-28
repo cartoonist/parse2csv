@@ -23,6 +23,32 @@ import parse
 class Reduce(object):
     """Supported reduce functions."""
     @staticmethod
+    def call(signiture, values):
+        """Call the reduce function specified by its signiture on `values`.
+
+        Args:
+            signiture : list or str
+                Function signiture (usually the entry associated with the field
+                under 'reduce' entry in the config file) is a string determining
+                the name of the function or a list in which the first element is
+                string (mandatory) indicating the function name and the other
+                elements are optional specifying the reduce function arguments.
+            values : list
+                The list of values to be reduced.
+        """
+        func_name = ''
+        args = list()
+        if isinstance(signiture, list):
+            func_name = signiture[0]
+            args = signiture[1:]
+        elif isinstance(signiture, str):
+            func_name = signiture
+        else:
+            raise RuntimeError("unknown reduce function signiture")
+        func = getattr(Reduce, func_name)
+        return func(values, *args)
+
+    @staticmethod
     def first(values):
         """Get the first value."""
         return values[0]
@@ -98,8 +124,7 @@ def process(data, funcs):
     reducts.update(funcs)
     proc_data = dict()
     for key, values in data.items():
-        func = getattr(Reduce, reducts[key])
-        proc_data[key] = func(values)
+        proc_data[key] = Reduce.call(reducts[key], values)
     return proc_data
 
 
