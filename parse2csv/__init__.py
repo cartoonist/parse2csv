@@ -14,3 +14,4 @@
 from .parse2csv import generate  #noqa
 from .parse2csv import list_dialects  #noqa
 from .parse2csv import default_dialect  #noqa
+from .reduct import Reduce  #noqa

@@ -10,60 +10,13 @@
     :license: MIT, see LICENSE for more details.
 """
 
-from __future__ import division
 from collections import defaultdict
 import csv
 
 import yaml
 import parse
 
-
-class Reduce(object):
-    """Supported reduce functions."""
-    @staticmethod
-    def first(values):
-        """Get the first value."""
-        return values[0]
-
-    @staticmethod
-    def last(values):
-        """Get the last value."""
-        return values[-1]
-
-    @staticmethod
-    def avg(values):
-        """Get average of the values."""
-        return sum(values) / len(values)
-
-    @staticmethod
-    def avg_tp(values):
-        """Get average of the values by preserving its original type."""
-        return type(values[0])(sum(values) / len(values))
-
-    @staticmethod
-    def count(values):
-        """Get the number of values."""
-        return len(values)
-
-    @staticmethod
-    def min(values):
-        """Get the minimum value."""
-        return min(values)
-
-    @staticmethod
-    def max(values):
-        """Get the maximum value."""
-        return max(values)
-
-    @staticmethod
-    def sum(values):
-        """Get the sum of values."""
-        return sum(values)
-
-    @staticmethod
-    def concat(values):
-        """Get concatenation of the values."""
-        return ''.join(values)
+from .reduct import Reduce
 
 
 def process(data, funcs):
@@ -81,8 +34,7 @@ def process(data, funcs):
     reducts.update(funcs)
     proc_data = dict()
     for key, values in data.items():
-        func = getattr(Reduce, reducts[key])
-        proc_data[key] = func(values)
+        proc_data[key] = Reduce.call(reducts[key], values)
     return proc_data
 
 
