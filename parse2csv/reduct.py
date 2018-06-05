@@ -50,6 +50,13 @@ class Reduce(object):
         return values[0]
 
     @staticmethod
+    def flatten_single(values):
+        """Get the first value if the `values` contains just one element."""
+        if (len(values) > 1):
+            raise RuntimeError("expected one value, but found %d" % len(values))
+        return values[0]
+
+    @staticmethod
     def last(values):
         """Get the last value."""
         return values[-1]
