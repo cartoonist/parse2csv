@@ -34,7 +34,10 @@ def process(data, funcs):
     reducts.update(funcs)
     proc_data = dict()
     for key, values in data.items():
-        proc_data[key] = Reduce.call(reducts[key], values)
+        try:
+            proc_data[key] = Reduce.call(reducts[key], values)
+        except RuntimeError:
+            raise RuntimeError("error while processing '%s'" % key)
     return proc_data
 
 
