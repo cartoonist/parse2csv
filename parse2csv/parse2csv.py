@@ -81,7 +81,7 @@ def generate(output, inputs, configfile, dialect='unix'):
         dialect : str
             This string specifies the dialect of the output CSV file.
     """
-    config = yaml.load(configfile)
+    config = yaml.safe_load(configfile)
     writer = csv.DictWriter(output,
                             fieldnames=config['fields'],
                             restval=config.get('missing_value', 'NA'),
